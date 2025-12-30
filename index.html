@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloomPots - Pots de Fleurs Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a6c3b;
+            --primary-light: #3d8c55;
+            --secondary: #d4af37;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --glass-bg: rgba(42, 108, 59, 0.85); /* Changé pour vert avec transparence */
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        header.scrolled .logo {
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 40px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        header.scrolled .nav-link {
+            color: var(--dark);
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        header.scrolled .mobile-toggle {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background-color: #f8f8f8;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .gallery h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        /* Order Section */
+        .order {
+            background-color: white;
+        }
+
+        .order h2 {
+            text-align: center;
+        }
+
+        .order-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .order-form {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .order-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .order-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #f8f8f8;
+        }
+
+        .contact h2 {
+            text-align: center;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-icon {
+            background-color: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            margin-bottom: 5px;
+        }
+
+        /* Footer - MODIFIÉ POUR VERT */
+        footer {
+            background: linear-gradient(135deg, rgba(42, 108, 59, 0.95) 0%, rgba(61, 140, 85, 0.9) 100%);
+            color: white;
+            padding: 70px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #e0f7e9;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            color: #c8e6d1;
+        }
+
+        /* Glassmorphism Footer - MODIFIÉ POUR VERT */
+        .glass-footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Bouncing effect */
+        @keyframes bounce {
+            0%, 20%, 60%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            80% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .bounce-effect:hover {
+            animation: bounce 0.8s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .order-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-image {
+                order: -1;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .nav-link {
+                color: var(--dark);
+                font-size: 1.3rem;
+            }
+            
+            .mobile-toggle {
+                display: block;
+                z-index: 1000;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header avec menu -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Bloom<span>Pots</span></a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Gallerie</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#order" class="nav-link">Commander</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Section Accueil avec image de fond -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Pots de Fleurs Premium</h1>
+            <p>Élégance et durabilité pour sublimer vos plantes d'intérieur et d'extérieur. Découvrez notre collection exclusive de pots artisanaux.</p>
+            <div class="hero-btns">
+                <a href="#gallery" class="btn bounce-effect">Voir la collection</a>
+                <a href="#order" class="btn btn-secondary bounce-effect">Commander maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Gallerie -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2>Notre Collection</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">Découvrez notre sélection de pots de fleurs premium, fabriqués à la main avec des matériaux de qualité supérieure.</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="ceramic">Céramique</button>
+                <button class="filter-btn" data-filter="clay">Terre cuite</button>
+                <button class="filter-btn" data-filter="concrete">Béton design</button>
+                <button class="filter-btn" data-filter="wood">Bois</button>
+            </div>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Les produits seront générés par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Commander -->
+    <section class="order" id="order">
+        <div class="container">
+            <h2>Commander</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">Remplissez le formulaire ci-dessous pour passer votre commande. Nous vous contacterons dans les plus brefs délais pour finaliser votre achat.</p>
+            
+            <div class="order-container">
+                <div class="order-form">
+                    <form id="orderForm">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Adresse e-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product">Produit souhaité</label>
+                            <select id="product" class="form-control" required>
+                                <option value="">Sélectionnez un produit</option>
+                                <option value="Vase Athéna">Vase Athéna - 89€</option>
+                                <option value="Pot Zen">Pot Zen - 75€</option>
+                                <option value="Jardinière Moderne">Jardinière Moderne - 120€</option>
+                                <option value="Pot Terracotta">Pot Terracotta - 55€</option>
+                                <option value="Cache-pot Luna">Cache-pot Luna - 95€</option>
+                                <option value="Pot Bois Naturel">Pot Bois Naturel - 110€</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quantity">Quantité</label>
+                            <input type="number" id="quantity" class="form-control" min="1" value="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message additionnel</label>
+                            <textarea id="message" class="form-control" rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Envoyer la commande</button>
+                    </form>
+                </div>
+                
+                <div class="order-image">
+                    <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Commande de pots de fleurs">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Contactez-nous</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem;">N'hésitez pas à nous contacter pour toute question concernant nos produits ou pour une demande personnalisée.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Adresse</h3>
+                            <p>123 Avenue des Plantes<br>75000 Paris, France</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Téléphone</h3>
+                            <p>+33 1 23 45 67 89<br>Lun-Ven: 9h-18h</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@bloompots.com<br>support@bloompots.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="order-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Nom complet</label>
+                            <input type="text" id="contactName" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Adresse e-mail</label>
+                            <input type="email" id="contactEmail" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">Sujet</label>
+                            <input type="text" id="contactSubject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" class="form-control" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%;">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer avec effet glassmorphism et bouncing - MODIFIÉ POUR VERT -->
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BloomPots</h3>
+                    <p>Créateurs de pots de fleurs premium depuis 2010. Nous combinons artisanat traditionnel et design moderne pour sublimer vos plantes.</p>
+                    <div class="social-links">
+                        <a href="#" class="bounce-effect"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="bounce-effect"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="bounce-effect"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="bounce-effect"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#gallery">Gallerie</a></li>
+                        <li><a href="#order">Commander</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Produits</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-filter="ceramic">Céramique</a></li>
+                        <li><a href="#" data-filter="clay">Terre cuite</a></li>
+                        <li><a href="#" data-filter="concrete">Béton design</a></li>
+                        <li><a href="#" data-filter="wood">Bois</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives et les nouvelles collections.</p>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <input type="email" placeholder="Votre email" class="form-control" style="margin-bottom: 15px;">
+                        <button class="btn" style="width: 100%; background-color: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3);">S'abonner</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 BloomPots. Tous droits réservés. | <a href="#" style="color: var(--secondary);">Politique de confidentialité</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des produits
+        const products = [
+            {
+                id: 1,
+                name: "Vase Athéna",
+                price: "89€",
+                description: "Vase en céramique artisanale avec finition lisse et motifs géométriques.",
+                image: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+                category: "ceramic"
+            },
+            {
+                id: 2,
+                name: "Pot Zen",
+                price: "75€",
+                description: "Pot en terre cuite pour une ambiance naturelle et apaisante.",
+                image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                category: "clay"
+            },
+            {
+                id: 3,
+                name: "Jardinière Moderne",
+                price: "120€",
+                description: "Jardinière en béton design avec finition texturée pour intérieur et extérieur.",
+                image: "https://images.unsplash.com/photo-1598880940080-ff9a29891b85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80",
+                category: "concrete"
+            },
+            {
+                id: 4,
+                name: "Pot Terracotta",
+                price: "55€",
+                description: "Pot classique en terre cuite, idéal pour les plantes méditerranéennes.",
+                image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                category: "clay"
+            },
+            {
+                id: 5,
+                name: "Cache-pot Luna",
+                price: "95€",
+                description: "Cache-pot en céramique émaillée avec finition brillante et coloris élégant.",
+                image: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+                category: "ceramic"
+            },
+            {
+                id: 6,
+                name: "Pot Bois Naturel",
+                price: "110€",
+                description: "Pot en bois massif traité pour résister à l'humidité, aspect naturel.",
+                image: "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+                category: "wood"
+            }
+        ];
+
+        // DOM Elements
+        const header = document.getElementById('header');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        const productsGrid = document.getElementById('productsGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const orderForm = document.getElementById('orderForm');
+        const contactForm = document.getElementById('contactForm');
+        const footerLinks = document.querySelectorAll('.footer-links a[data-filter]');
+
+        // Gestion du header au scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Menu mobile
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileToggle.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fermer le menu mobile au clic sur un lien
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Générer les produits
+        function renderProducts(filter = 'all') {
+            productsGrid.innerHTML = '';
+            
+            const filteredProducts = filter === 'all' 
+                ? products 
+                : products.filter(product => product.category === filter);
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bounce-effect';
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-price">${product.price}</div>
+                        <p class="product-desc">${product.description}</p>
+                        <a href="#order" class="btn" style="width: 100%;">Commander</a>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Initialiser les produits
+        renderProducts();
+
+        // Filtrage des produits
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Retirer la classe active de tous les boutons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Ajouter la classe active au bouton cliqué
+                button.classList.add('active');
+                // Filtrer les produits
+                const filter = button.getAttribute('data-filter');
+                renderProducts(filter);
+            });
+        });
+
+        // Filtrage depuis le footer
+        footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const filter = link.getAttribute('data-filter');
+                
+                // Mettre à jour les boutons de filtre
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-filter') === filter) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Filtrer les produits
+                renderProducts(filter);
+                
+                // Scroller vers la galerie
+                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Gestion du formulaire de commande
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Récupérer les valeurs du formulaire
+            const name = document.getElementById('name').value;
+            const product = document.getElementById('product').value;
+            
+            // Afficher une confirmation
+            alert(`Merci ${name} ! Votre commande pour "${product}" a été enregistrée. Nous vous contacterons sous 24h pour finaliser votre achat.`);
+            
+            // Réinitialiser le formulaire
+            orderForm.reset();
+        });
+
+        // Gestion du formulaire de contact
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Récupérer les valeurs du formulaire
+            const name = document.getElementById('contactName').value;
+            
+            // Afficher une confirmation
+            alert(`Merci ${name} ! Votre message a été envoyé. Nous vous répondrons dans les plus brefs délais.`);
+            
+            // Réinitialiser le formulaire
+            contactForm.reset();
+        });
+
+        // Ajouter l'effet de rebondissement au survol des cartes de produits
+        document.addEventListener('DOMContentLoaded', () => {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.classList.add('bounce-effect');
+            });
+        });
+    </script>
+</body>
+</html>
